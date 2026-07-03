@@ -1,14 +1,14 @@
+from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from pendulum import datetime, timedelta
 import os
 import requests
 import gzip
-import pandas
+import pandas as pd
+from dotenv import load_dotenv
 
-BASE_URL = (
-    'https://dumps.wikimedia.org/other/pageviews/2025/2025-10/'
-)
+BASE_URL = os.getenv('SAMPLE_PAGEVIEW')
 
 DATA_PATH = "/opt/airflow/data"
 RAW_PATH = f"{DATA_PATH}/raw"
